@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Todo List</h1>
+      <div class="input-section">
+        <input type="text" placeholder="Enter todo" id="todo-input" />
+        <button onclick="addTodo()">Add Todo</button>
+      </div>
+      <!-- <ul id="todo-list">
+        <li>
+          <span>Apple</span>
+          <button onclick="deleteTodo(this)">Delete</button>
+        </li>
+        <li>
+          <span>Mango</span>
+          <button onclick="deleteTodo(this)">Delete</button>
+        </li>
+        <li>
+          <span>Banana</span>
+          <button onclick="deleteTodo(this)">Delete</button>
+        </li>
+      </ul> -->
+    </div>
+
+    <script>
+      function addTodo() {
+        const input = document.getElementById("todo-input");
+        const value = input.value.trim();
+        if (value) {
+          const li = document.createElement("li");
+          li.innerHTML = `<span>${value}</span><button onclick="deleteTodo(this)">Delete</button>`;
+          document.getElementById("todo-list").appendChild(li);
+          input.value = "";
+        }
+      }
+
+      function deleteTodo(button) {
+        console.log("Remove data ...");
+        button.parentElement.remove();
+      }
+    </script>
+  </body>
+</html>

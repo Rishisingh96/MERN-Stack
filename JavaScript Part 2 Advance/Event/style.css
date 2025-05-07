@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 30px;
+}
+
+h2 {
+    margin: 40px 0 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+button {
+    background-color: #f4e04d;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 25px;
+    margin: 10px 10px 0 0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ffd500;
+    transform: scale(1.05);
+}

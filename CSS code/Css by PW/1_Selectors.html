@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector</title>
+    <style>
+        h1:hover{
+            color:red;
+            text-decoration:line-through;
+        }
+        button:focus{
+            color:red;
+            background-color:blue;
+        }
+        input:required{
+            color:blue;
+        }
+        input:checked {
+            border: none;
+            outline: 1px solid red;
+            }
+            h1::after{
+                content:"After!";
+                color:Red;
+            }
+           h2::first-letter{
+            colour:red;
+            font-size: 40px;
+           }
+           body{
+           /* background-color:hsla(240, 10%, 50%, 0.5); 
+            background-image : url(rishi.jpg);*/
+           }
+           body {
+            background-color: #ffffff;
+            background-image: url(https://picsum.photos/seed/picsum/200/300) ;
+            background-image: size100px;
+            background-repeat: no-repeat;
+            background-position:top center;
+      
+           }
+           /*
+           h1 {
+            color: black
+           }
+           
+           body {
+           background-color: #000000
+           }
+            output - black body background//
+           Hexadecimal notation
+           body {
+            background-color: hsla(240, 100%, 50%, 0.5);
+           }
+           /* output - body background color similar to purple color//
+           HSL and HSLa
+           p {
+           background-color: rgba(0,0,0, 0.5)
+           }
+           /* output - light black background color //
+
+           */
+           
+    </style>
+</head>
+<body>
+    <h1>My name is Rishi singh . I am learn for Creating a Pseudo Class Selectors.</h1>
+    <h2>Enter your Email: </h2>
+    <input type="email" name = "Email" placeholder="Enter your email address" required checked>
+    
+    
+    <form action="xyz.java">
+        <button>submit</button>
+    </form>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Iure odit quaerat perferendis ducimus iusto dicta labore saepe veniam consequatur nobis.
+    </p>
+    <div>
+        <p class="all">The different properties of the CSS background property are,
+            1. background-color
+            2. background-attachment
+            3. background-clip
+            4. background-image
+            5. background-origin
+            6. background-blend-mode
+            7. background-position
+            8. background-position-x,
+            9. Background-position-y
+            10. background-repeat
+            11. background-size</p>
+     
+    </div>
+</body>
+</html>

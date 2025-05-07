@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse Event Transitions</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      section {
+        text-align: center;
+      }
+
+      .rectangle {
+        width: 35rem;
+        height: 35rem;
+        background-color: #000;
+        border-radius: 1rem;
+        margin-bottom: 3.2rem;
+        transition: all 0.6s linear;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .addTransition3 {
+        border-radius: 50%;
+        background-color: #ffcc00;
+        transform: translate(-30rem, 0);
+      }
+
+      .addTransition4 {
+        border-radius: 50%;
+        background-color: #00ccff;
+        transform: translate(30rem, 0);
+      }
+
+      .addTransition5 {
+        border-radius: 50%;
+        background-color: #f5ee62;
+        transform: translate(-30rem, 0);
+      }
+
+      .addTransition6 {
+        border-radius: 50%;
+        background-color: #66ff66;
+        transform: translate(0rem, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="rectangle" id="rectDiv"></div>
+      <button onclick="handleMouseEvents3()">Transition 3</button>
+      <button onclick="handleMouseEvents4()">Transition 4</button>
+      <button onclick="handleMouseEvents5()">Transition 5</button>
+      <button onclick="handleMouseEvents6()">Transition 6</button>
+    </section>
+
+    <script>
+      const rectDiv = document.getElementById("rectDiv");
+
+      const resetClasses = () => {
+        rectDiv.classList.remove(
+          "addTransition3",
+          "addTransition4",
+          "addTransition5",
+          "addTransition6"
+        );
+      };
+
+      const handleMouseEvents3 = () => {
+        resetClasses();
+        rectDiv.classList.add("addTransition3");
+      };
+
+      const handleMouseEvents4 = () => {
+        resetClasses();
+        rectDiv.classList.add("addTransition4");
+      };
+
+      const handleMouseEvents5 = () => {
+        resetClasses();
+        rectDiv.classList.add("addTransition5");
+      };
+
+      const handleMouseEvents6 = () => {
+        resetClasses();
+        rectDiv.classList.add("addTransition6");
+      };
+    </script>
+  </body>
+</html>

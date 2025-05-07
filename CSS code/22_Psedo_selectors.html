@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width = device - width, initial - scale = 1.0">
+        <meta http-equiv = "X-UA-Compatible" content = "ie = edge">
+        <title> Pseudo selector & more designing </title>
+        <style>
+            .container{
+                border: 2px solid red;
+                background-color: rgb(255, 206, 206);
+                padding: 34px;
+                margin: 34px auto;
+                width : 666px;
+            }
+            /*  Read more , blue ko black karne ke liye*/
+            a{
+                text-decoration : none;
+                color : black;
+            }
+            a:hover{
+                color: black;
+                background-color: rgb(245, 213, 213);
+            }
+
+            a:visited{
+                background-color:yellow;
+            }
+            a:active{
+                background-color: darkblue;
+            }
+            .btn{
+                font-family: 'Segoe UI', T;
+                font-weight : bold;
+                background-color: crimson;
+                padding:6px;
+                border:none;
+                cursor: pointer;
+                font-size: 13px;
+                border-radius: 4px;
+            }
+            .btn:hover{
+                color:darkgoldenrod;
+                background-color:rgb(223, 245, 201);
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class = "container" id = "cont1">
+            <h3> This is my heading </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, reprehenderit. </p>
+            <a href = "https://yohoo.com" class = "btn">Read more</a>
+            <button class = "btn">Constact us</button>
+        </div>
+    </body>
+</html>

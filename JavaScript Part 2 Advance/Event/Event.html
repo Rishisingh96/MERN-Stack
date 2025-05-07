@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript All Important Events</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      h2 {
+        color: #333;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 5px;
+      }
+      .event-box {
+        margin-bottom: 40px;
+      }
+      input,
+      button,
+      select,
+      textarea {
+        margin: 10px 0;
+        padding: 8px;
+        font-size: 16px;
+      }
+      #output {
+        background-color: #fff;
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-top: 20px;
+        white-space: pre-wrap;
+      }
+      .highlight-box {
+        width: 200px;
+        height: 100px;
+        background-color: #e0e0e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript All Important Event Types</h1>
+    <div id="output"></div>
+
+    <!-- Mouse Events -->
+    <div class="event-box">
+      <h2>Mouse Events</h2>
+      <button id="clickBtn">Click Me</button>
+      <div id="mouseArea" class="highlight-box">Mouse Area</div>
+    </div>
+
+    <!-- Keyboard Events -->
+    <div class="event-box">
+      <h2>Keyboard Events</h2>
+      <input type="text" id="keyInput" placeholder="Type something..." />
+    </div>
+
+    <!-- Form Events -->
+    <div class="event-box">
+      <h2>Form Events</h2>
+      <form id="sampleForm">
+        <input type="text" id="nameInput" placeholder="Enter your name" />
+        <select id="selectOption">
+          <option value="">Select Option</option>
+          <option value="A">Option A</option>
+          <option value="B">Option B</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- Window & Document Events -->
+    <div class="event-box">
+      <h2>Window & Document Events</h2>
+      <p>Resize the window or scroll the page to see events in action.</p>
+    </div>
+
+    <!-- Input Events -->
+    <div class="event-box">
+      <h2>Input Events</h2>
+      <textarea
+        id="inputArea"
+        rows="4"
+        cols="50"
+        placeholder="Type something..."
+      ></textarea>
+    </div>
+
+    <script>
+      const output = document.getElementById("output");
+
+      function logEvent(message) {
+        output.textContent += message + "\n";
+      }
+
+      // Mouse Events
+      document
+        .getElementById("clickBtn")
+        .addEventListener("click", () => logEvent("Mouse: Button clicked"));
+      const mouseArea = document.getElementById("mouseArea");
+      mouseArea.addEventListener("mouseenter", () =>
+        logEvent("Mouse: Entered area")
+      );
+      mouseArea.addEventListener("mouseleave", () =>
+        logEvent("Mouse: Left area")
+      );
+      mouseArea.addEventListener("mousedown", () =>
+        logEvent("Mouse: Button down on area")
+      );
+      mouseArea.addEventListener("mouseup", () =>
+        logEvent("Mouse: Button up on area")
+      );
+      mouseArea.addEventListener("dblclick", () =>
+        logEvent("Mouse: Double clicked")
+      );
+      mouseArea.addEventListener("mousemove", () =>
+        logEvent("Mouse: Moving over area")
+      );
+
+      // Keyboard Events
+      const keyInput = document.getElementById("keyInput");
+      keyInput.addEventListener("keydown", (e) =>
+        logEvent(`Keyboard: Key Down - ${e.key}`)
+      );
+      keyInput.addEventListener("keyup", (e) =>
+        logEvent(`Keyboard: Key Up - ${e.key}`)
+      );
+      keyInput.addEventListener("keypress", (e) =>
+        logEvent(`Keyboard: Key Press - ${e.key}`).console.log(`${e.key}`)
+      );
+
+      // Form Events
+      const form = document.getElementById("sampleForm");
+      const nameInput = document.getElementById("nameInput");
+      const selectOption = document.getElementById("selectOption");
+
+      nameInput.addEventListener("focus", () =>
+        logEvent("Form: Name input focused")
+      );
+      nameInput.addEventListener("blur", () =>
+        logEvent("Form: Name input blurred")
+      );
+      nameInput.addEventListener("input", () =>
+        logEvent(`Form: Input changed to '${nameInput.value}'`)
+      );
+      selectOption.addEventListener("change", () =>
+        logEvent(`Form: Selected '${selectOption.value}'`)
+      );
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        logEvent("Form: Submitted");
+      });
+
+      // Window & Document Events
+      // window.addEventListener("load", () => logEvent("Window: Loaded"));
+      // window.addEventListener("resize", () => logEvent("Window: Resized"));
+      // window.addEventListener("scroll", () => logEvent("Window: Scrolled"));
+
+      // Input/Textarea Events
+      const inputArea = document.getElementById("inputArea");
+      inputArea.addEventListener("input", () =>
+        logEvent(`Textarea: Changed to '${inputArea.value}'`)
+      );
+    </script>
+  </body>
+</html>

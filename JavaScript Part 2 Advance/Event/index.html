@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Events</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Inline Event</h2>
+    <button onclick="greet('Inline Greeting')">greeting</button>
+    <button onclick="greet('Inline Greeting Again')">greeting again</button>
+    <button onclick="greet('One More Inline Greeting')">greeting</button>
+
+    <h2>Dom Event handler</h2>
+    <button id="domBtn1">greeting</button>
+    <button id="domBtn2">greeting again</button>
+
+    <h2>addEventListener Event handler</h2>
+    <button id="addBtn1">greeting</button>
+    <button id="addBtn2">greeting again</button>
+
+    <script>
+      // Inline event handled by HTML directly
+      function greet(message) {
+        alert(message);
+      }
+
+      // DOM Event Handler
+      const domBtn1 = document.getElementById("domBtn1");
+      const domBtn2 = document.getElementById("domBtn2");
+
+      domBtn1.onclick = function () {
+        alert("DOM Handler: Hello!");
+      };
+
+      domBtn2.onclick = function () {
+        alert("DOM Handler: Hello again!");
+      };
+
+      // addEventListener Handler
+      const addBtn1 = document.getElementById("addBtn1");
+      const addBtn2 = document.getElementById("addBtn2");
+
+      addBtn1.addEventListener("click", () => {
+        alert("addEventListener: Hey there!");
+      });
+
+      addBtn2.addEventListener("click", () => {
+        alert("addEventListener: What's up!");
+      });
+    </script>
+  </body>
+</html>

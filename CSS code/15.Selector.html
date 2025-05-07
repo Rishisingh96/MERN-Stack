@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Class Selector</title>
+    <!-- We will see four types of CSS Selectors:
+    - CSS element Selector
+    - CSS id Selector
+    - CSS class Selector
+    - The CSS grouping Selector
+
+        p{ color : blue; }
+    -->
+    
+    <style>
+        /*Element Sector*/
+        p{
+            border : 2px solid red;
+        } 
+        /*   Id selector   */
+        #firstPara{
+            color : green;
+        }
+        /* Class selector */
+        .redElement{
+            Color : red;
+        }
+        /* Class selector  */
+        .bgBlue{
+            color : yellow;
+            background-color: blue;
+        }
+        /* Grouping Selector */
+        footer, span{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <!--  Element Selector -->
+    <h3> CSS Selectors </h3>
+            <p id = "firstPara">This is a simple paragraph to demonstrate css selectors</p>
+            <p id = "secondPara" class = "redElement bgBlue">This is a another simple paragraph to demons</p>
+    <div>
+            <p> This is yet ant other simple paragraph inside div  to demonstrate css selectors</p>
+            <span>My name is Rishi singh.</span>
+    </div>
+    <footer> I live is Izergadh. </footer>
+</body>
+</html>

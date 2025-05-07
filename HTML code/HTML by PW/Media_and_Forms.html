@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media</title> 
+    <!-- 
+        Topics Coverd
+        <img>
+        <audio>
+        <video>
+        <iframe>
+    -->
+   
+<body>
+    <h1>I am adding Image using Media</h1>
+    <img src="https://picsum.photos/id/237/200/300" alt="image" />
+
+    <h2>Audio creating</h2>
+    <!-- <audio controls autoplay>
+        <source src="./[ HD ] Iron Man _ Tony Stark - Duniya ko Bhul Jau x Tu Karna Chahti Grind(MP3_160K).mp3" >
+        Yout browser does not support the audio tag.
+    </audio> -->
+        
+    <audio controls controlsList = "nodownload">
+        <source src="./[ HD ] Iron Man _ Tony Stark - Duniya ko Bhul Jau x Tu Karna Chahti Grind(MP3_160K).mp3" >
+        Yout browser does not support the audio tag.
+    </audio>
+
+    <!-- 2_Inputs
+    Topic Covered 
+    - Input Tag
+    - Input Attributes
+            - type
+            1 - type 2- name 3- requierd 4- value 5-placeholder
+    - Common Input Attributes
+    - Legend -->
+<h1>Enter your input</h1>
+    <label for = "email">Enter Email :</label>
+    <input type="email" name="email" id="email" required >
+     <form action = "/subscribe" method  ="get">
+        <label for = "email">Enter salary :</label>
+        <!-- <input type="number" name="salary" placeholder="Enter your salary" value="100000" id="email" required> -->
+        <input type="number" name="salary" placeholder="Enter your salary"  required>
+     </form>
+     <h1>Common Input Types</h1>
+     <!-- 1_text -->
+     <label for = "mailid">Mail Id</label>
+     <input type="text" name="mailid" placeholder="Text Input" required>
+     <label for="option1">option1</label>
+     <input  type="checkbox" id = "option1" name="check" value="option1"/>
+     <input  type="checkbox" id = "option2" name="check" value="option2"/>
+     <input  type="checkbox" id = "option3" name="check" value="option3"/>
+     <input type = "submit" />
+</head>
+</body>
+</html>

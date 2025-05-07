@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .output {
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 10px;
+        border: 1px solid #ccc;
+        white-space: pre-wrap; /* Preserve whitespace and line breaks */
+      }
+      .highlight-box {
+        width: 200px;
+        height: 100px;
+        background-color: #e0e0e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button id="addBtn">Add Data to localStorage</button>
+      <button id="getBtn">Get Data from localStorage</button>
+      <button id="removeBtn">Remove Data from localStorage</button>
+    </div>
+    <script>
+      const myBioData = {
+        name: "Rishi singh",
+        age: 22,
+        course: "Computer Science",
+        gender: "Male",
+        course: ["JavaScript", "Python", "Java"],
+        hobbies: ["Reading", "Traveling", "Coding"],
+        address: {
+          city: "Jaipur",
+          state: "Rajasthan",
+          country: "India",
+          zipCode: "302012",
+        },
+      };
+
+      document.getElementById("addBtn").addEventListener("click", function () {
+        localStorage.setItem("studentBioData", JSON.stringify(studentBioData));
+        console.log("Data added to localStorage");
+      });
+
+      document.getElementById("getBtn").addEventListener("click", function () {
+        const data = localStorage.getItem("myBioData");
+        if (data) {
+          const parsedData = JSON.parse(data);
+          console.log("Data retrieved from localStorage:", parsedData);
+        } else {
+          console.log("No data found in localStorage");
+        }
+      });
+
+      document
+        .getElementById("removeBtn")
+        .addEventListener("click", function () {
+          localStorage.removeItem("myBioData");
+          console.log("Data removed from localStorage");
+        });
+    </script>
+  </body>
+</html>
