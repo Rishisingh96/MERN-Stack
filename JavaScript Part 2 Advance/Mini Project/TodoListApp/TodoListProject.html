@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Character encoding -->
+    <meta charset="UTF-8" />
+    <!-- For responsive design on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <!-- Linking external stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Main heading -->
+    <h1>Todo List</h1>
+    <br />
+
+    <!-- Form to add todo -->
+    <form>
+      <div>
+        <!-- Input field for new todo -->
+        <input type="text" id="inputValue" placeholder="Enter todo" required />
+        <!-- Button to add todo -->
+        <button class="btn">Add Todo</button>
+      </div>
+
+      <!-- Section to hold todo items -->
+      <section class="todo-list-elem"></section>
+    </form>
+
+    <script>
+      // Selecting the main todo container
+      const mainTodoElem = document.querySelector(".todo-list-elem");
+
+      // Selecting the input field
+      const inputValue = document.getElementById("inputValue");
+
+      // Function to get todos from localStorage
+      const getTodoListFromLocalStorage = () => {
+        return JSON.parse(localStorage.getItem("todoList")) || [];
+      };
+
+      // Function to set todos into localStorage
+      const addTodoListToLocalStorage = (todoList) => {
+        return localStorage.setItem("todoList", JSON.stringify(todoList));
+      };
+
+      // Initialize todo list from localStorage
+      let localTodoList = getTodoListFromLocalStorage() || [];
+
+      // Function to add a single todo element in the DOM
+      const addTodoDynamicElement = (curElem) => {
+        const divElement = document.createElement("div"); // Create a div
+        divElement.classList.add("mini_todo_div"); // Add a CSS class
+        // Add list item and delete button
+        divElement.innerHTML = `<li>${curElem}</li> <button class="deleteBtn">Delete</button>`;
+        mainTodoElem.append(divElement); // Append div to main todo list container
+      };
+
+      // Function to handle adding todo from form
+      const addTodoList = (e) => {
+        e.preventDefault(); // Prevent form from refreshing the page
+        console.log("add todo list function called");
+
+        // Get trimmed input value
+        const todoValue = inputValue.value.trim();
+        inputValue.value = ""; // Clear the input box
+
+        // If todo is not empty and not already present
+        if (todoValue !== "" && !localTodoList.includes(todoValue)) {
+          localTodoList.push(todoValue); // Add new todo
+          localTodoList = [...new Set(localTodoList)]; // Remove duplicates using Set
+          console.log(localTodoList); // Log current todos
+
+          // Save updated list to localStorage
+          localStorage.setItem("todoList", JSON.stringify(localTodoList));
+
+          // Add the new todo to UI
+          addTodoDynamicElement(todoValue);
+        } else {
+          // Alert if invalid input
+          alert("Please enter a valid todo or it already exists in the list.");
+        }
+      };
+
+      // Display all todos on page load
+      const showTodoList = () => {
+        console.log(localTodoList); // Log current todos
+        localTodoList.forEach((curElem) => {
+          addTodoDynamicElement(curElem); // Add each todo to UI
+        });
+      };
+
+      showTodoList(); // Call the display function on load
+
+      // Event listener for Add button click
+      document.querySelector(".btn").addEventListener("click", (e) => {
+        addTodoList(e); // Call add function on button click
+      });
+
+      // Function to delete a todo
+      const deleteTodo = (e) => {
+        console.log(e.target); // Log the element clicked
+        const totoRemove = e.target; // Save clicked target
+
+        // Only delete if delete button is clicked
+        if (totoRemove.classList.contains("deleteBtn")) {
+          let todoVale = totoRemove.previousElementSibling.innerText; // Get text of the <li>
+          console.log(todoVale); // Log text to delete
+
+          // Filter out the item from array (case insensitive)
+          localTodoList = localTodoList.filter((curTodo) => {
+            return curTodo.toLowerCase() !== todoVale.toLowerCase();
+          });
+
+          console.log(localTodoList); // Log updated array
+
+          // Update localStorage
+          localStorage.setItem("todoList", JSON.stringify(localTodoList));
+
+          // Remove from UI
+          totoRemove.parentElement.remove();
+        }
+      };
+
+      // Add event listener for all delete buttons (event delegation)
+      mainTodoElem.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent default behavior
+        deleteTodo(e); // Call delete function
+      });
+    </script>
+  </body>
+</html>
