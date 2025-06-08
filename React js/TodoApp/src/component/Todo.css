@@ -1,0 +1,302 @@
+/* ========= GLOBAL STYLES ========= */
+:root {
+  --primary-color: #001f29;
+  --secondary-color: #ffffff;
+  --accent-green: #2ecc71;
+  --accent-red: #e74c3c;
+  --button-blue: #5dade2;
+  --hover-yellow: #f1c40f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+/* ========= CONTAINER ========= */
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 3rem 1rem;
+  background-image: linear-gradient(100deg, #001214, #001f29);
+}
+
+/* ========= HEADER ========= */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.date-time {
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+  margin-top: 1rem;
+}
+
+/* ========= FORM ========= */
+form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 1rem 0;
+}
+
+form input {
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.6rem;
+  border: none;
+  outline: none;
+  border-top-left-radius: 17px;
+  border-bottom-left-radius: 17px;
+  background-color: #f2f3f4;
+  color: #000;
+}
+
+form input::placeholder {
+  color: #555;
+}
+
+form button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  background-color: var(--button-blue);
+  color: #fff;
+  border-top-right-radius: 17px;
+  border-bottom-right-radius: 17px;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: var(--hover-yellow);
+  color: #000;
+}
+
+/* ========= TODO LIST ========= */
+.myUnOrdList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.todo-list {
+
+  width: 100%;
+  max-width: 600px;
+}
+
+.todo-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f2f3f4;
+  padding: 1rem 1.5rem;
+  margin: 1rem auto;
+  border-radius: 20px;
+  color: #1c2833;
+  font-size: 1.6rem;
+  word-wrap: break-word;
+}
+
+.todo-item span {
+  max-width: 20rem;
+  overflow-wrap: anywhere;
+}
+
+.check-btn,
+.delete-btn {
+  font-size: 3rem;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 80%;
+  margin: 0 5px;
+  background-color: #fff;
+  color: rgb(0, 0, 0);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.check-btn {
+  background-color: var(--accent-green);
+}
+
+.delete-btn {
+  background-color: var(--accent-red);
+}
+
+.checkList {
+  text-decoration: line-through;
+}
+
+.notCheckList {
+  text-decoration: none;
+}
+
+.clear-btn {
+  background-color: var(--accent-red);
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+  margin-top: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: #8d1407;
+}
+
+/* ========= RESPONSIVE ========= */
+
+/* Extra small devices (watches, < 320px) */
+@media (max-width: 320px) {
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .date-time {
+    font-size: 0.8rem;
+  }
+
+  form input,
+  form button {
+    font-size: 0.8rem;
+  }
+
+  .todo-item {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small devices (phones, < 480px) */
+@media (max-width: 480px) {}
+
+/* Medium devices (tablets, < 768px) */
+@media (max-width: 768px) {}
+
+/* Large devices (laptops, < 1200px) */
+@media (max-width: 1200px) {
+  .header h1 {
+    font-size: 3.2rem;
+  }
+
+  .todo-item {
+    font-size: 1.5rem;
+  }
+}
+
+/* Extra large devices (TVs, > 1920px) */
+@media (min-width: 1920px) {
+  .header h1 {
+    font-size: 6rem;
+  }
+
+  .todo-item {
+    font-size: 2.5rem;
+  }
+
+  .todo-list {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 3rem;
+  }
+
+  .date-time {
+    font-size: 1.4rem;
+  }
+
+  form input,
+  form button {
+    font-size: 1.4rem;
+  }
+
+  .todo-item {
+    font-size: 1.4rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 2.4rem;
+  }
+
+  .date-time {
+    font-size: 1.2rem;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  form input,
+  form button {
+    border-radius: 10px;
+    font-size: 1.2rem;
+    margin: 0.3rem 0;
+  }
+
+  .todo-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+@media (min-width: 1920px) {
+  .todo-container {
+    padding: 6rem 2rem;
+  }
+
+  .header h1 {
+    font-size: 6rem;
+  }
+
+  .todo-item {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .todo-container {
+    padding: 1rem 0.2rem;
+  }
+
+  .header h1,
+  .date-time,
+  .todo-item {
+    font-size: 0.8rem;
+  }
+}
