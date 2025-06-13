@@ -1,6 +1,6 @@
 import { TodoList } from './component/TodoList'
 
-function App() {
+export default function App() {
   return (
     <div className="app-container">
       <TodoList />
@@ -8,6 +8,5 @@ function App() {
   )
 }
 
-export default App
 
 

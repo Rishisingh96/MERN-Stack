@@ -1,24 +1,24 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const TodoForm = ({ onAddTodo }) => {
   const [inputValue, setInputValue] = useState({});
   const [error, setError] = useState('');
 
-  const handleInputChange = (value) => {
+  const handleInputChange = value => {
     setInputValue({ id: Date.now(), content: value, checked: false });
     setError('');
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = event => {
     event.preventDefault();
-    
+
     if (!inputValue.content || !inputValue.content.trim()) {
       setError('Please enter a task');
       return;
     }
 
     onAddTodo(inputValue);
-    setInputValue({ id: "", content: "", checked: false });
+    setInputValue({ id: '', content: '', checked: false });
     setError('');
   };
 
@@ -31,8 +31,8 @@ export const TodoForm = ({ onAddTodo }) => {
             className={`todo-input ${error ? 'error' : ''}`}
             autoComplete="off"
             placeholder="What needs to be done?"
-            value={inputValue.content || ""}
-            onChange={(event) => handleInputChange(event.target.value)}
+            value={inputValue.content || ''}
+            onChange={event => handleInputChange(event.target.value)}
           />
           {error && <span className="error-message">{error}</span>}
         </div>

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { Clock } from "./Clock";
-import "./Todo.css";
-import { TodoForm } from "./TodoForm";
-import { TodoDeleteAndCheck } from "./TodoDeleteAndCheck";
-import { getSLocalStorageData, setSLocalStorageData } from "./TodoLocalStorage";
+import { useState, useEffect } from 'react';
+import { Clock } from './Clock';
+import './Todo.css';
+import { TodoForm } from './TodoForm';
+import { TodoDeleteAndCheck } from './TodoDeleteAndCheck';
+import { getSLocalStorageData, setSLocalStorageData } from './TodoLocalStorage';
 
 // Load tasks from localStorage on component mount
 export const TodoList = () => {
@@ -14,20 +14,20 @@ export const TodoList = () => {
     setSLocalStorageData(task);
   }, [task]);
 
-  const handleFormSubmit = (inputValue) => {
+  const handleFormSubmit = inputValue => {
     const { id, content, checked } = inputValue;
     if (!content.trim()) return;
 
     // Avoid adding duplicate task content
-    const ifTodoContentMatched = task.find((curTask) => curTask.content === content);
+    const ifTodoContentMatched = task.find(curTask => curTask.content === content);
     if (ifTodoContentMatched) return;
 
-    setTask((prevTask) => [...prevTask, { id, content, checked }]);
+    setTask(prevTask => [...prevTask, { id, content, checked }]);
   };
 
   // Function to delete a task based on its content
-  const deleteTask = (value) => {
-    const updatedTasks = task.filter((curTask) => curTask.content !== value);
+  const deleteTask = value => {
+    const updatedTasks = task.filter(curTask => curTask.content !== value);
     setTask(updatedTasks);
   };
 
@@ -36,8 +36,8 @@ export const TodoList = () => {
     setTask([]);
   };
 
-  const handleCheckedTodo = (content) => {
-    const updatedTasks = task.map((curTask) => {
+  const handleCheckedTodo = content => {
+    const updatedTasks = task.map(curTask => {
       if (curTask.content === content) {
         return { ...curTask, checked: !curTask.checked };
       }
@@ -46,13 +46,13 @@ export const TodoList = () => {
     setTask(updatedTasks);
   };
 
-  const filteredTasks = task.filter((curTask) => {
+  const filteredTasks = task.filter(curTask => {
     if (filter === 'active') return !curTask.checked;
     if (filter === 'completed') return curTask.checked;
     return true;
   });
 
-  const remainingTasks = task.filter((curTask) => !curTask.checked).length;
+  const remainingTasks = task.filter(curTask => !curTask.checked).length;
 
   return (
     <section className="todo-container">
@@ -66,19 +66,19 @@ export const TodoList = () => {
       <TodoForm onAddTodo={handleFormSubmit} />
 
       <div className="todo-filters">
-        <button 
+        <button
           className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
           onClick={() => setFilter('all')}
         >
           All
         </button>
-        <button 
+        <button
           className={`filter-btn ${filter === 'active' ? 'active' : ''}`}
           onClick={() => setFilter('active')}
         >
           Active
         </button>
-        <button 
+        <button
           className={`filter-btn ${filter === 'completed' ? 'active' : ''}`}
           onClick={() => setFilter('completed')}
         >
@@ -88,7 +88,7 @@ export const TodoList = () => {
 
       <section className="myUnOrdList">
         <ul>
-          {filteredTasks.map((curTask) => (
+          {filteredTasks.map(curTask => (
             <TodoDeleteAndCheck
               key={curTask.id}
               data={curTask.content}
