@@ -1,0 +1,1 @@
+username=Rishi+singh&email=rishisinghdev98%40gmail.com&password=1234567&gender=male

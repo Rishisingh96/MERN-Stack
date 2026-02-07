@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image with Text Below</title>
+  <style>
+    .container {
+      text-align: center;
+      /* Center the content */
+    }
+
+    .container img {
+      max-width: 100%;
+      max-height: 300px;
+      /* Adjust the maximum height as needed */
+      height: auto;
+    }
+
+    .price {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <img src="img/Rishi singh.png" alt="Error loading image">
+    <div class="price" id="priceSection">
+      <!-- Price will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script>
+    // Calculate discount
+    var originalPrice = 5000;
+    var discountedPrice = 2000;
+    var discount = Math.round(((originalPrice - discountedPrice) / originalPrice) * 100);
+
+    // Display price and discount
+    var priceSection = document.getElementById("priceSection");
+    priceSection.innerHTML = `<ins>${discountedPrice}</ins> <del>${originalPrice}</del> (${discount}% off)`;
+  </script>
+
+</body>
+
+</html>

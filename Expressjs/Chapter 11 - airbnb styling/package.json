@@ -1,0 +1,24 @@
+{
+  "name": "chapter-11---airbnb-styling",
+  "version": "1.0.0",
+  "description": "Today I learn Tailwind css implementation in this project",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Rishi singh",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "express": "^5.2.1",
+    "js": "^0.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  }
+}

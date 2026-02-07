@@ -1,0 +1,6 @@
+{
+  "username": "Rishi singh",
+  "email": "rishisinghdev98@gmail.com",
+  "password": "Rishi123",
+  "gender": "male"
+}
