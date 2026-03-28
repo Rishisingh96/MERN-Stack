@@ -29,7 +29,7 @@ module.exports = class Home {
         });
     }
 
-    static fetchAll(callback) {
+    static find()(callback) {
         fs.readFile(homeDataPath, (err, data) =>{
             console.log("File read: ", err,data);
             callback(!err ? JSON.parse(data) : []);

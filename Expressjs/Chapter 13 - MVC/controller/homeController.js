@@ -1,7 +1,7 @@
 const Home = require("../models/homeModels");
 
 exports.getAddHome = (req, res, next) => {
-  const registeredHomes = Home.fetchAll();
+  const registeredHomes = Home.find()();
   console.log(registeredHomes);
   res.render("addHome", {
     pageTitle: "Add Home to airbnb",
@@ -25,7 +25,7 @@ exports.postAddHome = (req, res, next) => {
 };
 
 exports.getHomes = (req, res, next) => {
-  const registeredHomes = Home.fetchAll();
+  const registeredHomes = Home.find()();
   res.render('home', {
     registeredHomes: registeredHomes,
     pageTitle: "airbnb Home"

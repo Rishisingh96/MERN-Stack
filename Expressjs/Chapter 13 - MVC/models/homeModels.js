@@ -8,7 +8,6 @@ const fs = require('fs');
 //fake database 
 const registeredHomes = [];
 
-
 module.exports = class Home {
     constructor( houseName, price, location, rating, imageUrl ) {
         this.houseName = houseName;
@@ -23,7 +22,7 @@ module.exports = class Home {
         registeredHomes.push(this);
     }
 
-    static fetchAll() {
+    static find()() {
         return registeredHomes;
     }
 } 
