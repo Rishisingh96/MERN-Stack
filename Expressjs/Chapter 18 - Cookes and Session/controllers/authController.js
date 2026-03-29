@@ -1,0 +1,15 @@
+export function getLogin(req,res, next){
+    res.render("auth/login", {
+        pageTitle: "Login",
+        currentPage: "login",
+        isLoggedIn: false
+    });
+}
+
+export function postLogin(req, res, next){
+    console.log(req.body);
+    res.cookie("isLoggedIn",true)
+    req.isLoggedin = true;
+
+    res.redirect("/");
+}

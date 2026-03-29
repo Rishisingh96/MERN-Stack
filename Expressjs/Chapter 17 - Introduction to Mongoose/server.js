@@ -1,23 +1,24 @@
 // Core Module
 const path = require('path');
 
+require('dotenv').config();
+
 // External Module
 const express = require('express');
+const mongoose = require('mongoose');
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")
 const hostRouter = require("./routes/hostRouter")
 const rootDir = require("./utils/pathUtil");
-const errorsController = require("./controller/errors");
-const { default: mongoose } = require('mongoose');
-// const { default: mongoose } = require('mongoose');
+const errorsController = require("./controllers/errors");
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(storeRouter);
 app.use("/host", hostRouter);
 
@@ -25,14 +26,27 @@ app.use(express.static(path.join(rootDir, 'public')))
 
 app.use(errorsController.pageNotFound);
 
+const PORT = process.env.PORT || 3009;
+const MONGODB_URI = process.env.MONGODB_URI;
 
-const PORT = 3007;
-const MONGO_URL = "mongodb+srv://root:Rishi%409838@first-project.jiyzzyi.mongodb.net/?appName=First-Project";
+if (!MONGODB_URI) {
+  console.error(
+    'Missing MONGODB_URI. Copy .env.example to .env and set your Atlas connection string (include /databaseName before ?).'
+  );
+  process.exit(1);
+}
 
-mongoose.connect(MONGO_URL).then(() =>{
-  console.log("Connected to MongoDB");
-  app.listen(PORT, () => {
-  console.log(`Server running on address http://localhost:${PORT}`);
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => {
+    const dbName = mongoose.connection.name;
+    console.log('Connected to Mongo');
+    console.log(`Using database: "${dbName}" — collections appear after first save (e.g. homes, favourites)`);
+    app.listen(PORT, () => {
+      console.log(`Server running on address http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Error while connecting to Mongo: ', err);
+    process.exit(1);
   });
-})
-
