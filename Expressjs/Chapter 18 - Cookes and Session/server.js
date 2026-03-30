@@ -6,44 +6,19 @@ require('dotenv').config();
 // External Module
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 //Local Module
-const storeRouter = require("./routes/storeRouter")
-const hostRouter = require("./routes/hostRouter")
-const authRouter = require("./routes/authRouter")
+const storeRouter = require("./routes/storeRouter");
+const hostRouter = require("./routes/hostRouter");
+const authRouter = require("./routes/authRouter");
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
 
-const app = express();
-
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-
-app.use(express.urlencoded({ extended: true }));
-
-app.use((req, res, next) =>{
-  console.log('cookie check middleware',req.get('Cookie'));
-  req.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true':false;
-  next();
-})
-
-app.use(storeRouter);
-app.use("/host", (req,res,next)=>{
-  if(req.isLoggedIn){
-    next();
-  }else{
-    res.redirect("/login");
-  }
-});
-app.use("/host", hostRouter);
-app.use(authRouter);
-
-app.use(express.static(path.join(rootDir, 'public')))
-
-app.use(errorsController.pageNotFound);
-
 const PORT = process.env.PORT || 3009;
 const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME || 'airbnbHomes';
 
 if (!MONGODB_URI) {
   console.error(
@@ -52,16 +27,62 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
-// Always use one named DB (default airbnbHomes). Without this, URI ...mongodb.net/?... uses "test",
-// so clearing another DB still shows old listings.
-const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME || 'airbnbHomes';
+const app = express();
+
+const sessionStore = new MongoDBStore({
+  uri: `${MONGODB_URI}/${MONGODB_DB_NAME}`,
+  collection: 'sessions',
+});
+
+sessionStore.on('error', function(error) {
+  console.log('SESSION STORE ERROR:', error);
+});
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'Rishi coding',
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+  })
+);
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  req.isLoggedIn = !!req.session.isLoggedIn;
+  next();
+});
+
+// app.use((req, res, next) =>{
+//   // console.log('cookie check middleware',req.get('Cookie'));
+//   req.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true':false;
+//   next();
+// })
+app.use(storeRouter);
+app.use("/host", (req, res, next) => {
+  if (req.isLoggedIn) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+});
+app.use("/host", hostRouter);
+app.use(authRouter);
+
+app.use(express.static(path.join(rootDir, 'public')));
+
+app.use(errorsController.pageNotFound);
 
 mongoose
   .connect(MONGODB_URI, { dbName: MONGODB_DB_NAME })
   .then(() => {
     const dbName = mongoose.connection.name;
     console.log('Connected to Mongo');
-    console.log(`Using database: "${dbName}" — collections appear after first save (e.g. homes, favourites)`);
+    console.log(`Using database: "${dbName}" — collections appear after first save (e.g. homes, favourites, session)`);
     app.listen(PORT, () => {
       console.log(`Server running on address http://localhost:${PORT}`);
     });

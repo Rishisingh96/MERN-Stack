@@ -49,6 +49,7 @@
 
       <% } %>
       
+      <% if (!isLoggedIn){%>
        <li>
         <a
           href="/login"
@@ -56,6 +57,15 @@
           >Login</a
         >
       </li>
+      <% } else { %>
+        <li>
+          <a
+            href="/logout"
+            class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
+            >Logout</a
+          >
+        </li>
+      <% } %>
     </ul>
   </nav>
 </header>
