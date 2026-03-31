@@ -29,31 +29,27 @@ if (!MONGODB_URI) {
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 const sessionStore = new MongoDBStore({
-  uri: `${MONGODB_URI}/${MONGODB_DB_NAME}`,
+  uri: MONGODB_URI,
+  databaseName: MONGODB_DB_NAME,
   collection: 'sessions',
 });
 
-sessionStore.on('error', function(error) {
-  console.log('SESSION STORE ERROR:', error);
-});
-
+app.use(express.urlencoded());
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'Rishi coding',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: sessionStore,
   })
 );
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-
-app.use(express.urlencoded({ extended: true }));
-
 app.use((req, res, next) => {
-  req.isLoggedIn = !!req.session.isLoggedIn;
+  req.isLoggedIn = req.session.isLoggedIn;
   next();
 });
 
@@ -62,6 +58,7 @@ app.use((req, res, next) => {
 //   req.isLoggedIn = req.get('Cookie') ? req.get('Cookie').split('=')[1] === 'true':false;
 //   next();
 // })
+
 app.use(storeRouter);
 app.use("/host", (req, res, next) => {
   if (req.isLoggedIn) {
@@ -82,7 +79,7 @@ mongoose
   .then(() => {
     const dbName = mongoose.connection.name;
     console.log('Connected to Mongo');
-    console.log(`Using database: "${dbName}" — collections appear after first save (e.g. homes, favourites, session)`);
+    console.log(`Using database: "${dbName}" — collections appear after first save (e.g. homes, favourites)`);
     app.listen(PORT, () => {
       console.log(`Server running on address http://localhost:${PORT}`);
     });
