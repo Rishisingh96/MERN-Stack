@@ -11,6 +11,7 @@ import { Movei } from "./pages/Movie";
 import { Contact } from "./pages/Contact";
 import "./App.css";
 import AppLayout from "./pages/layout/AppLayout";
+import { ErrorPage } from "./pages/ErrorPage";
 
 function App() {
   //method one using new version
@@ -18,7 +19,7 @@ function App() {
     {
       path: "",
       element: <AppLayout />,
-      errorElement: <h1>404 Not Found</h1>,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
