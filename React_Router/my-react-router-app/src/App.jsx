@@ -7,11 +7,12 @@ import {
 } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
-import { Movei } from "./pages/Movie";
 import { Contact } from "./pages/Contact";
+import { Movie } from "./pages/Movie";
 import "./App.css";
-import AppLayout from "./pages/layout/AppLayout";
+import AppLayout from "./components/layout/AppLayout";
 import { ErrorPage } from "./pages/ErrorPage";
+import { GetApiMoveData } from "./api/GetApiMoveData";
 
 function App() {
   //method one using new version
@@ -31,7 +32,8 @@ function App() {
         },
         {
           path: "/movie",
-          element: <Movei />,
+          element:  <Movie />,
+          loader: GetApiMoveData
         },
         {
           path: "/contact",
