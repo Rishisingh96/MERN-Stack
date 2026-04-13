@@ -7,12 +7,14 @@ import {
 } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
-import { Contact } from "./pages/Contact";
+import { Contact, contactData } from "./pages/Contact";
 import { Movie } from "./pages/Movie";
 import "./App.css";
 import AppLayout from "./components/layout/AppLayout";
 import { ErrorPage } from "./pages/ErrorPage";
 import { GetApiMoveData } from "./api/GetApiMoveData";
+import { MovieDetails } from "./pages/MovieDetails";
+import { getMovieDetails } from "./api/GetMovieDetails";
 
 function App() {
   //method one using new version
@@ -35,9 +37,15 @@ function App() {
           element:  <Movie />,
           loader: GetApiMoveData
         },
+         {
+          path: "/movie/:movieID",
+          element:  <MovieDetails />,
+          loader: getMovieDetails
+        },
         {
           path: "/contact",
           element: <Contact />,
+          action: contactData,
         },
       ],
     },
