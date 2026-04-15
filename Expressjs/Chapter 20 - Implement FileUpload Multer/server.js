@@ -16,7 +16,7 @@ const authRouter = require("./routes/authRouter");
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
 
-const PORT = process.env.PORT || 3008;
+const PORT = process.env.PORT || 3009;
 const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME || 'airbnbHomes';
 
@@ -32,6 +32,42 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+// const store = new MongoDBStore({
+//   uri: DB_PATH,
+//   collection: 'sessions'
+// });
+
+// for creating a random string 
+const randomString = (length) =>{
+  const characters = 'abcdefghijklmnopqrstuvwxyz';
+  let result = '';
+  for(let i=0; i<length; i++){
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
+const storage = multer.diskStorage({
+  destination: (req,file, cb)=>{
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) =>{
+    cb(null, randomString(10) + '-' + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) =>{
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+
+const multerOptions ={
+  storage,fileFilter
+};
+
 const sessionStore = new MongoDBStore({
   uri: MONGODB_URI,
   databaseName: MONGODB_DB_NAME,
@@ -39,8 +75,11 @@ const sessionStore = new MongoDBStore({
 });
 
 app.use(express.urlencoded({ extended: true }));
-app.use(multer().single('photo'));
+app.use(multer(multerOptions).single('photo'));
 app.use(express.static(path.join(rootDir, 'public')))
+app.use("/uploads", express.static(path.join(rootDir, 'uploads')))
+app.use("/host/uploads", express.static(path.join(rootDir, 'uploads')))
+app.use("/homes/uploads", express.static(path.join(rootDir, 'uploads')))
 
 app.use(
   session({

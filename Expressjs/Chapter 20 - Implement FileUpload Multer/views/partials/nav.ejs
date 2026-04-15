@@ -1,84 +1,85 @@
-<header class="bg-red-500 text-white p-4 shadow-md">
-  <nav class="container mx-auto flex justify-between items-center">
-    <ul class="flex space-x-4">
-      <li>
-        <a
-          href="/"
-          class="<%= currentPage === 'index' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >airbnb</a
-        >
-      </li>
+<header class="bg-white shadow-lg sticky top-0 z-50">
+  <nav class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-2">
+          <svg class="w-8 h-8 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span class="text-xl font-bold text-rose-500">airbnb</span>
+        </a>
+      </div>
 
-      <% if (isLoggedIn){%>
+      <!-- Search Bar -->
+      <div class="hidden md:flex items-center space-x-2 border border-gray-300 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition-shadow">
+        <div class="border-r border-gray-300 pr-4">
+          <input type="text" placeholder="Where to?" class="outline-none text-sm w-24">
+        </div>
+        <div class="border-r border-gray-300 pr-4">
+          <input type="text" placeholder="Check in" class="outline-none text-sm w-24">
+        </div>
+        <div class="border-r border-gray-300 pr-4">
+          <input type="text" placeholder="Check out" class="outline-none text-sm w-24">
+        </div>
+        <div class="pr-2">
+          <input type="text" placeholder="Guests" class="outline-none text-sm w-20">
+        </div>
+        <button class="bg-rose-500 text-white p-2 rounded-full hover:bg-rose-600 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </div>
 
-        <% if (user && user.userType == 'guest'){ %>
-
-      <li>
-        <a
-          href="/homes"
-          class="<%= currentPage === 'Home' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >Homes-List</a
-        >
-      </li>
-      <li>
-        <a
-          href="/favourites"
-          class="<%= currentPage === 'favourites' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >Favourites</a
-        >
-      </li>
-      <li>
-        <a
-          href="/bookings"
-          class="<%= currentPage === 'bookings' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >Bookings</a
-        >
-      </li>
-
-      <%}else{ %>
-
-      <li>
-        <a
-          href="/host/host-home-list"
-          class="<%= currentPage === 'host-homes' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >Host Homes</a
-        >
-      </li>
-      <li>
-        <a
-          href="/host/add-home"
-          class="<%= currentPage === 'addHome' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >Add Home</a
-        >
-      </li>
-
+      <!-- User Menu -->
+      <div class="flex items-center space-x-4">
+        <% if (isLoggedIn) { %>
+          <% if (user && user.userType == 'guest') { %>
+            <a href="/homes" class="<%= currentPage === 'Home' ? 'text-rose-500' : 'text-gray-700' %> hover:text-rose-500 transition">Explore</a>
+            <a href="/favourites" class="<%= currentPage === 'favourites' ? 'text-rose-500' : 'text-gray-700' %> hover:text-rose-500 transition">Wishlists</a>
+            <a href="/bookings" class="<%= currentPage === 'bookings' ? 'text-rose-500' : 'text-gray-700' %> hover:text-rose-500 transition">Trips</a>
+          <% } else { %>
+            <a href="/host/host-home-list" class="<%= currentPage === 'host-homes' ? 'text-rose-500' : 'text-gray-700' %> hover:text-rose-500 transition">Your Homes</a>
+            <a href="/host/add-home" class="<%= currentPage === 'addHome' ? 'text-rose-500' : 'text-gray-700' %> hover:text-rose-500 transition">Add Home</a>
+          <% } %>
+          
+          <!-- User Profile Dropdown -->
+          <div class="relative group">
+            <button class="flex items-center space-x-2 border border-gray-300 rounded-full p-2 hover:shadow-md transition">
+              <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+              </svg>
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div class="py-2">
+                <div class="px-4 py-2 border-b border-gray-100">
+                  <p class="text-sm font-medium text-gray-900"><%= user ? user.email : 'User' %></p>
+                  <p class="text-xs text-gray-500"><%= user && user.userType == 'guest' ? 'Guest' : 'Host' %></p>
+                </div>
+                <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition">Logout</a>
+              </div>
+            </div>
+          </div>
+        <% } else { %>
+          <a href="/login" class="<%= currentPage === 'login' ? 'text-rose-500' : 'text-gray-700' %> hover:text-rose-500 transition">Login</a>
+          <a href="/signup" class="bg-rose-500 text-white px-4 py-2 rounded-full hover:bg-rose-600 transition">Sign up</a>
         <% } %>
-      <% } %>
-      
-      <% if (!isLoggedIn){%>
-       <li>
-        <a
-          href="/login"
-          class="<%= currentPage === 'login' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >Login</a
-        >
-      </li>
-        <li>
-        <a
-          href="/signup"
-          class="<%= currentPage === 'signup' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
-          >Sign Up</a
-        >
-      </li>
-      <% } else { %>
-        <li>
-          <a
-            href="/logout"
-            class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
-            >Logout</a
-          >
-        </li>
-      <% } %>
-    </ul>
+      </div>
+    </div>
+
+    <!-- Mobile Search Bar -->
+    <div class="md:hidden pb-3">
+      <div class="flex items-center border border-gray-300 rounded-full px-4 py-2">
+        <input type="text" placeholder="Search destinations" class="outline-none text-sm flex-1">
+        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+    </div>
   </nav>
 </header>

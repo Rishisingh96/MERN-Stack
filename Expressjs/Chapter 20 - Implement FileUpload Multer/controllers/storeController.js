@@ -1,5 +1,3 @@
-const favourite = require("../models/favourite");
-const Favourite = require("../models/favourite");
 const Home = require("../models/home");
 const User = require("../models/user")
 
@@ -74,53 +72,74 @@ exports.getFavouriteList = async (req, res, next) => {
 };
 
 exports.postAddToFavourite = async (req, res, next) => {
+  // Check if user is logged in
+  if (!req.session.user) {
+    // Return JSON response for AJAX requests
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+      return res.status(401).json({ 
+        success: false, 
+        message: 'Please login to add favorites',
+        requireLogin: true 
+      });
+    }
+    // For regular form submissions, redirect to login with return URL
+    return res.redirect('/login?returnUrl=' + encodeURIComponent(req.originalUrl));
+  }
 
   const homeId = req.body.id;
   const userId = req.session.user._id;
   const user = await User.findById(userId);
+  
   if(!user.favourites.includes(homeId)){
     user.favourites.push(homeId);
     await user.save();
   }
-  // const homeId = req.body.id;
-  // Favourite.findOne({ houseId: homeId })
-  //   .then((fav) => {
-  //     if (fav) {
-  //       console.log("Already marked as favourite");
-  //       return Promise.resolve();
-  //     }
-  //     return new Favourite({ houseId: homeId }).save().then((result) => {
-  //       console.log("Fav added: ", result);
-  //     });
-  //   })
-  //   .then(() => res.redirect("/favourites"))
-  //   .catch((err) => {
-  //     console.log("Error while marking favourite: ", err);
-  //     res.redirect("/favourites");
-  //   });
+  
+  // Return JSON response for AJAX requests
+  if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+    return res.json({ 
+      success: true, 
+      message: 'Added to favorites' 
+    });
+  }
+  
+  // For regular form submissions
   res.redirect("/favourites");
 };
 
 exports.postRemoveFromFavourite = async (req, res, next) => {
+  // Check if user is logged in
+  if (!req.session.user) {
+    // Return JSON response for AJAX requests
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+      return res.status(401).json({ 
+        success: false, 
+        message: 'Please login to remove favorites',
+        requireLogin: true 
+      });
+    }
+    // For regular form submissions, redirect to login
+    return res.redirect('/login');
+  }
+
   const homeId = req.params.homeId;
   const userId = req.session.user._id;
   const user = await User.findById(userId);
+  
   if(user.favourites.includes(homeId)){
     user.favourites = user.favourites.filter(fav => fav != homeId);
     await user.save();
   }
   
-  // const homeId = req.params.homeId;
-  // Favourite.findOneAndDelete({houseId: homeId})
-  //   .then((result) => {
-  //     console.log("Fav Removed: ", result);
-  //   })
-  //   .catch((err) => {
-  //     console.log("Error while removing favourite: ", err);
-  //   })
-  //   .finally(() => {
-  //     res.redirect("/favourites");
-  //   });
+  // Return JSON response for AJAX requests
+  if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+    return res.json({ 
+      success: true, 
+      message: 'Removed from favorites' 
+    });
+  }
+  
+  // For regular form submissions
   res.redirect("/favourites");
 };
 

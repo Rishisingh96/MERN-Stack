@@ -1,42 +1,253 @@
 <%- include('../partials/head') %>
   </head>
-  <body>
+  <body class="bg-gray-50">
       <%- include('../partials/nav') %>
-      <main class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 max-w-6xl">
-          <h2 class="text-3xl text-red-500 font-bold text-center mb-6">
-              Details of <%= home.houseName %>
-          </h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div class="rounded-lg overflow-hidden">
-                  <img src="<%= home.photo %>" alt="<%= home.name %>" class="w-full h-96 object-cover">
+      
+      <!-- Hero Image Section -->
+      <section class="relative">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 h-96">
+              <!-- Main Image -->
+              <div class="md:col-span-2 lg:row-span-2 relative overflow-hidden">
+                  <img 
+                      src="<%= home.photo %>" 
+                      alt="<%= home.houseName %>" 
+                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      onerror="this.src='https://via.placeholder.com/800x600?text=No+Image'"
+                  >
+                  <button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition">
+                      <svg class="w-5 h-5 text-gray-600 hover:text-red-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                      </svg>
+                  </button>
               </div>
               
-              <div class="space-y-6">
-                  <div class="border-b pb-4">
-                      <h3 class="text-2xl font-semibold mb-2">Description</h3>
-                      <p class="text-gray-600"><%= home.description %></p>
+              <!-- Additional Images (Placeholder) -->
+              <div class="relative overflow-hidden group">
+                  <img src="https://via.placeholder.com/400x300?text=Room+1" alt="Room 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                  <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span class="text-white font-medium">View all photos</span>
                   </div>
-
-                  <div class="border-b pb-4">
-                      <h3 class="text-2xl font-semibold mb-2">Location</h3>
-                      <p class="text-gray-600"><%= home.location %></p>
-                  </div>
-                  
-                  <div class="border-b pb-4">
-                      <h3 class="text-2xl font-semibold mb-2">Price</h3>
-                      <p class="text-green-600 text-xl font-bold">$<%= home.price %> / night</p>
-                  </div>
-                  
-                  <div class="border-b pb-4">
-                      <h3 class="text-2xl font-semibold mb-2">Rating</h3>
-                      <div class="flex items-center">
-                          <span class="text-yellow-400 text-xl">★</span>
-                          <span class="ml-2 text-lg"><%= home.rating %> / 5</span>
+              </div>
+              <div class="relative overflow-hidden">
+                  <img src="https://via.placeholder.com/400x300?text=Room+2" alt="Room 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+              </div>
+              <div class="relative overflow-hidden">
+                  <img src="https://via.placeholder.com/400x300?text=Room+3" alt="Room 3" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+              </div>
+              <div class="relative overflow-hidden">
+                  <img src="https://via.placeholder.com/400x300?text=Room+4" alt="Room 4" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                  <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      <div class="text-white text-center">
+                          <span class="text-2xl font-bold">+12</span>
+                          <span class="text-sm">Photos</span>
                       </div>
                   </div>
-                  <div class="mt-2">
-                    <%- include('../partials/favourite') %>
+              </div>
+          </div>
+      </section>
+
+      <!-- Main Content -->
+      <main class="container mx-auto px-4 py-8 max-w-7xl">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <!-- Left Column - Home Details -->
+              <div class="lg:col-span-2 space-y-8">
+                  <!-- Title and Location -->
+                  <div>
+                      <div class="flex items-start justify-between mb-4">
+                          <div>
+                              <h1 class="text-3xl font-bold text-gray-900 mb-2"><%= home.houseName %></h1>
+                              <div class="flex items-center gap-2 text-gray-600">
+                                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                  </svg>
+                                  <span><%= home.location %></span>
+                              </div>
+                          </div>
+                          <div class="flex items-center gap-1">
+                              <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                              </svg>
+                              <span class="font-medium"><%= home.rating %></span>
+                              <span class="text-gray-600">(23 reviews)</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Host Info -->
+                  <div class="border-t border-b border-gray-200 py-6">
+                      <div class="flex items-center justify-between">
+                          <div class="flex items-center gap-4">
+                              <div class="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
+                                  <svg class="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                                      <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                                  </svg>
+                              </div>
+                              <div>
+                                  <p class="font-medium">Hosted by John</p>
+                                  <p class="text-sm text-gray-600">Joined in 2020</p>
+                              </div>
+                          </div>
+                          <button class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium">
+                              Contact host
+                          </button>
+                      </div>
+                  </div>
+
+                  <!-- Description -->
+                  <div>
+                      <h2 class="text-2xl font-bold mb-4">About this place</h2>
+                      <p class="text-gray-700 leading-relaxed"><%= home.description %></p>
+                  </div>
+
+                  <!-- Amenities -->
+                  <div>
+                      <h2 class="text-2xl font-bold mb-4">What this place offers</h2>
+                      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                          <div class="flex items-center gap-3">
+                              <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                              </svg>
+                              <span>Free parking</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                              <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                              </svg>
+                              <span>Self check-in</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                              <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                              </svg>
+                              <span>Free cancellation</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                              <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                              </svg>
+                              <span>Dedicated workspace</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                              <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012-2v-1a2 2 0 012-2h1.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2v1a2 2 0 104 0v-1a2 2 0 012-2h.5a2.5 2.5 0 002.5-2.5V3.935"/>
+                              </svg>
+                              <span>Pool</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                              <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                              </svg>
+                              <span>WiFi</span>
+                          </div>
+                      </div>
+                      <button class="mt-4 text-rose-500 hover:text-rose-600 transition font-medium">
+                          Show all amenities →
+                      </button>
+                  </div>
+
+                  <!-- Reviews Section -->
+                  <div>
+                      <h2 class="text-2xl font-bold mb-4">Reviews</h2>
+                      <div class="space-y-4">
+                          <div class="border-b pb-4">
+                              <div class="flex items-center gap-3 mb-2">
+                                  <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
+                                  <div>
+                                      <p class="font-medium">Sarah M.</p>
+                                      <p class="text-sm text-gray-600">March 2024</p>
+                                  </div>
+                              </div>
+                              <p class="text-gray-700">Amazing place! The host was very responsive and the location was perfect.</p>
+                          </div>
+                          <div class="border-b pb-4">
+                              <div class="flex items-center gap-3 mb-2">
+                                  <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
+                                  <div>
+                                      <p class="font-medium">John D.</p>
+                                      <p class="text-sm text-gray-600">February 2024</p>
+                                  </div>
+                              </div>
+                              <p class="text-gray-700">Beautiful home with all the amenities you need. Would definitely stay again!</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Right Column - Booking Card -->
+              <div class="lg:sticky lg:top-24 h-fit">
+                  <div class="bg-white border border-gray-200 rounded-2xl shadow-lg p-6">
+                      <!-- Price -->
+                      <div class="flex items-center justify-between mb-6">
+                          <div>
+                              <p class="text-2xl font-bold">₹<%= home.price %></p>
+                              <p class="text-gray-600">per night</p>
+                          </div>
+                          <div class="flex items-center gap-1">
+                              <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                              </svg>
+                              <span class="font-medium"><%= home.rating %></span>
+                              <span class="text-gray-600">(23)</span>
+                          </div>
+                      </div>
+
+                      <!-- Dates -->
+                      <div class="border border-gray-300 rounded-lg mb-4">
+                          <div class="grid grid-cols-2">
+                              <div class="border-r border-gray-300 p-3">
+                                  <input type="text" placeholder="Check in" class="w-full outline-none text-sm">
+                              </div>
+                              <div class="p-3">
+                                  <input type="text" placeholder="Check out" class="w-full outline-none text-sm">
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- Guests -->
+                      <div class="border border-gray-300 rounded-lg p-3 mb-4">
+                          <select class="w-full outline-none text-sm">
+                              <option>1 guest</option>
+                              <option>2 guests</option>
+                              <option>3 guests</option>
+                              <option>4 guests</option>
+                          </select>
+                      </div>
+
+                      <!-- Reserve Button -->
+                      <button class="w-full bg-rose-500 text-white py-3 rounded-lg hover:bg-rose-600 transition font-medium mb-4">
+                          Reserve
+                      </button>
+
+                      <!-- Message -->
+                      <p class="text-center text-sm text-gray-600 mb-4">
+                          You won't be charged yet
+                      </p>
+
+                      <!-- Price Breakdown -->
+                      <div class="border-t pt-4 space-y-2">
+                          <div class="flex justify-between text-sm">
+                              <span>₹<%= home.price %> x 5 nights</span>
+                              <span>₹<%= home.price * 5 %></span>
+                          </div>
+                          <div class="flex justify-between text-sm">
+                              <span>Cleaning fee</span>
+                              <span>₹500</span>
+                          </div>
+                          <div class="flex justify-between text-sm">
+                              <span>Service fee</span>
+                              <span>₹832</span>
+                          </div>
+                          <div class="flex justify-between font-bold text-lg pt-2 border-t">
+                              <span>Total</span>
+                              <span>₹<%= (home.price * 5) + 500 + 832 %></span>
+                          </div>
+                      </div>
+
+                      <!-- Favorite Button -->
+                      <div class="mt-6 pt-4 border-t">
+                          <%- include('../partials/favourite', {home: home}) %>
+                      </div>
                   </div>
               </div>
           </div>

@@ -1,6 +1,23 @@
-<form action="/favourites" method="POST">
-  <button type="submit" class="bg-green-300 p-2 hover:bg-green-500">
-    Add to Favourite
+<% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
+  <!-- Logged in user - direct form submission -->
+  <form action="/favourites" method="POST" class="favorite-form" data-home-id="<%= home._id %>">
+    <button type="submit" class="bg-green-300 p-2 hover:bg-green-500 rounded-lg transition">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+    <input type="hidden" name="id" value="<%= home._id %>" />
+  </form>
+<% } else { %>
+  <!-- Guest user - AJAX with login prompt -->
+  <button 
+    type="button" 
+    class="bg-gray-200 p-2 hover:bg-gray-300 rounded-lg transition favorite-btn"
+    data-home-id="<%= home._id %>"
+    onclick="handleFavoriteClick(this)"
+  >
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+    </svg>
   </button>
-  <input type="hidden" name="id" value="<%= home._id %>" />
-</form>
+<% } %>
