@@ -1,12 +1,12 @@
-const user = {
-    username: "hitesh",
-    price: 999,
+// const user = {
+//     username: "hitesh",
+//     price: 999,
 
-    welcomeMessage: function() {
-        // console.log(`${this.username} , welcome to website`);
-        // console.log(this);
-    }
-}
+//     welcomeMessage: function() {
+//         // console.log(`${this.username} , welcome to website`);
+//         // console.log(this);
+//     }
+// }
 
 // user.welcomeMessage()
 // user.username = "sam"
@@ -48,6 +48,10 @@ const user = {
 // console.log(addTwo(3, 4))
 
 
-const myArray = [2, 5, 3, 7, 8]
+// const myArray = [2, 5, 3, 7, 8]
 
 // myArray.forEach()
+const add = function(a,b){
+    return a+b;
+};
+console.log(add(2,3));

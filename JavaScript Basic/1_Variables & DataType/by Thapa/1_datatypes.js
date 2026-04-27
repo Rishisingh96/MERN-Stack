@@ -4,8 +4,7 @@
 
 //* Data types define the type of values that a variable can hold.
 
-//? Types of Primitive Data types
-
+//? Types of Primitive Data types in JavaScript:
 //? Number: Represents numeric values, including integers and floating-point numbers.
 // Example:
 // var myFavNum = -5;
