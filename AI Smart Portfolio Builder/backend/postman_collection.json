@@ -1,0 +1,82 @@
+{
+  "info": {
+    "name": "AI Smart Portfolio Builder API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Rishi Kumar\",\n  \"username\": \"rishi\",\n  \"email\": \"rishi@example.com\",\n  \"password\": \"Password@123\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/register"
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"rishi@example.com\",\n  \"password\": \"Password@123\"\n}"
+        },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "Portfolio - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Rishi — Full-stack Developer\",\n  \"template\": \"modern\",\n  \"bio\": \"Full-stack developer focused on building clean, scalable web apps.\",\n  \"projects\": [\n    {\n      \"title\": \"AI Smart Portfolio Builder\",\n      \"description\": \"A MERN app that generates portfolio content using OpenAI and exports to PDF/HTML.\",\n      \"technologies\": [\"React\", \"Node.js\", \"Express\", \"MongoDB\", \"OpenAI\"]\n    }\n  ],\n  \"skills\": [\n    { \"name\": \"JavaScript\", \"level\": \"Advanced\" },\n    { \"name\": \"React\", \"level\": \"Advanced\" }\n  ]\n}"
+        },
+        "url": "{{baseUrl}}/api/portfolio/create"
+      }
+    },
+    {
+      "name": "AI - Generate Bio",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Rishi Kumar\",\n  \"role\": \"Full-stack Developer\",\n  \"years\": 2,\n  \"skills\": [\"React\", \"Node.js\", \"MongoDB\"],\n  \"highlights\": [\"Built MERN apps\", \"AI integrations\"],\n  \"tone\": \"professional\"\n}"
+        },
+        "url": "{{baseUrl}}/api/ai/generate-bio"
+      }
+    },
+    {
+      "name": "Public - Portfolio by Username",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/public/portfolio/{{username}}"
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "username", "value": "rishi" }
+  ]
+}
+
