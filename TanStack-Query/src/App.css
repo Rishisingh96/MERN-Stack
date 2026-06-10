@@ -1,0 +1,101 @@
+
+body {
+	background: #f4f8fb;
+	color: #222;
+	font-family: 'Segoe UI', 'Urbanist', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background: #fff;
+	box-shadow: 0 2px 12px rgba(33, 35, 38, 0.08);
+	padding: 0;
+	width: 100%;
+	min-height: 5rem;
+	display: flex;
+	align-items: center;
+	z-index: 10;
+}
+
+header > div {
+	max-width: 350px;
+	margin: 2rem auto 1rem auto;
+	background: #f8fafd;
+	border-radius: 1.2rem;
+	box-shadow: 0 2px 16px rgba(33, 35, 38, 0.10);
+	padding: 2rem 2.5rem 1.5rem 2.5rem;
+}
+
+header a {
+	color: #2e86c1;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 2.1rem;
+	margin-bottom: 1.2rem;
+	display: inline-block;
+	letter-spacing: 0.5px;
+	transition: color 0.2s;
+}
+header a:hover {
+	color: #145a8a;
+}
+
+header ul {
+	margin: 1.2rem 0 0 0;
+	padding: 0 0 0 1.2rem;
+}
+header li {
+	margin-bottom: 0.7rem;
+	font-size: 1.25rem;
+}
+header ul a {
+	color: #512da8;
+	font-weight: 500;
+	font-size: 1.15rem;
+	border-radius: 0.3rem;
+	padding: 0.2rem 0.7rem;
+	transition: background 0.2s, color 0.2s;
+}
+header ul a:hover {
+	background: #e3eafc;
+	color: #145a8a;
+}
+
+main, .main-content, .page-content, .card {
+	background: #fff;
+	border-radius: 1.2rem;
+	box-shadow: 0 2px 16px rgba(33, 35, 38, 0.06);
+	padding: 2.5rem 2rem;
+	margin: 2.5rem auto;
+	max-width: 600px;
+}
+
+h1, h2, h3 {
+	font-family: inherit;
+	font-weight: 700;
+	color: #154360;
+	margin-bottom: 1.2rem;
+}
+
+footer {
+	background: #f8fafd;
+	color: #154360;
+	text-align: center;
+	padding: 1.5rem 0 1.2rem 0;
+	border-radius: 0 0 1.2rem 1.2rem;
+	margin: 2rem auto 0 auto;
+	font-size: 1.1rem;
+	max-width: 350px;
+	box-shadow: 0 2px 12px rgba(33, 35, 38, 0.06);
+}
+
+@media (max-width: 600px) {
+	header > div, .main-content, .page-content, .card, footer {
+		max-width: 98vw;
+		padding: 1.2rem 0.5rem;
+	}
+	h1 {
+		font-size: 1.5rem;
+	}
+}

@@ -85,6 +85,10 @@ function MakeChai ( order: Chai){
 
 function brew(order: MasalaChai | GingerChai){
     if("spicelevel" in order){
-        
+        // masala chai
     }
 }
+
+// function isStringArray(arr: unknown): arr is string[]{
+
+// }
