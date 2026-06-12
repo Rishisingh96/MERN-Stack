@@ -1,23 +1,15 @@
-// -> 
+type Person = {
+    name:string;
+    age:number;
+    isStudent:boolean;
+    class?:string;
+    address:{city:string; country:string}
+}
 
-// const person = {
-//     name: 'Rishi singh',
-//     age:27,
-//     isStudent:true,
-//     address:'India'
-// }
-
-// console.log(person.address);
-
-
-// 
-
-
-const person = {
+const person:Person = {
     name: 'Rishi singh',
     age:27,
     isStudent:true,
-    
     address:{
         city:"Indore", 
         country:"India"
@@ -26,13 +18,10 @@ const person = {
 }
 
 
-const person2:{
-    
-} = {
+const person1:Person = {
     name: 'Rishi singh',
     age:27,
     isStudent:true,
-    
     address:{
         city:"Indore", 
         country:"India"
