@@ -13,7 +13,6 @@ const person:Person = {
     address:{
         city:"Indore", 
         country:"India"
-        
     }
 }
 

@@ -1,14 +1,5 @@
 "use strict";
-// -> 
 Object.defineProperty(exports, "__esModule", { value: true });
-// const person = {
-//     name: 'Rishi singh',
-//     age:27,
-//     isStudent:true,
-//     address:'India'
-// }
-// console.log(person.address);
-// 
 const person = {
     name: 'Rishi singh',
     age: 27,
@@ -18,7 +9,7 @@ const person = {
         country: "India"
     }
 };
-const person2 = {
+const person1 = {
     name: 'Rishi singh',
     age: 27,
     isStudent: true,
@@ -28,4 +19,4 @@ const person2 = {
     }
 };
 console.log(person.address);
-//# sourceMappingURL=object.js.map
+//# sourceMappingURL=typeAliase.js.map
