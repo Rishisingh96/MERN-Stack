@@ -2103,7 +2103,7 @@ A very common React interview question is:
 These concepts are extremely important because modern React development revolves around **useEffect, side effects, cleanup functions, memory management, and Strict Mode**, making them favorite topics in React interviews for both freshers and experienced developers.
 
 
-## 🌐 6. Event Handling & Forms (96–110)
+
 
 # 🌐 6. Event Handling & Forms (96–100) – React Interview Questions & Answers
 
@@ -2847,9 +2847,7 @@ Because React follows the DOM event bubbling mechanism, where events propagate f
 These five questions are among the most frequently asked React interview questions because event handling forms the foundation of user interaction, form management, and dynamic UI behavior in React applications.
 
 
-# 🌐 6. Event Handling & Forms (101–105) – Detailed React Interview Answers
 
----
 
 # 101. What is Event Capturing in React?
 
@@ -3691,10 +3689,6 @@ A very common React interview question is:
 These concepts are extremely important because almost every React application contains forms, user input handling, validation logic, and event management. Interviewers frequently ask these questions to test your understanding of real-world React development.
 
 
-# 🌐 6. Event Handling & Forms (106–110) – React Interview Questions & Answers
-
----
-
 # 106. How Do You Handle Forms in React?
 
 ## Answer
@@ -4509,9 +4503,7 @@ These topics are highly important for React interviews because nearly every real
 
 
 
-## 🌍 7. Routing (111–120)
-
-# 🛣️ 7. React Router (111–115) – React Interview Questions & Answers
+# 🌍 7. Routing (111–120)
 
 ---
 

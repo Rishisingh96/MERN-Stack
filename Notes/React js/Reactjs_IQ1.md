@@ -275,6 +275,7 @@
 
 These **210 React JS interview questions** cover almost everything asked in interviews for **Freshers, React Developers, Frontend Developers, MERN Stack Developers, and React + TypeScript Developers (0–5 Years Experience)**.
 
+# 📘 1. React Fundamentals (1–20)
 
 # 1. What is React?
 

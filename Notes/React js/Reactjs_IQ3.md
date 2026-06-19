@@ -33,7 +33,7 @@
 80. What are common mistakes with Hooks?
 
 
-## 🎣 4. React Hooks (51–80)
+# 🎣 4. React Hooks (51–80)
 
 # 51. What are Hooks in React?
 

@@ -39,7 +39,7 @@
 ---
 
 
-## 🧩 2. Components & Props (21–35)
+# 🧩 2. Components & Props (21–35)
 
 
 # 21. What is a Component in React?
@@ -1621,7 +1621,7 @@ These help share data across multiple components.
 **Parent-child communication in React is achieved through props and callback functions. Parents pass data to children using props, while children communicate with parents by invoking callback functions passed as props. This follows React’s one-way data flow architecture and helps maintain predictable application behavior.**
 
 
-## 🔄 3. State Management (36–50)
+# 🔄 3. State Management (36–50)
 
 # 36. What is State in React?
 
