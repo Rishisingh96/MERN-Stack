@@ -7117,3 +7117,6 @@ You can say:
 * **Web APIs** → Browser-provided APIs for extra functionality
 
 These are highly important for **JavaScript browser internals + MERN interviews**.
+
+
+# 🚀 11. ES6+ Features (211–240)
